@@ -27,9 +27,7 @@ robot -d ../Results API.robot
   
   *Change JavaScript to any language (e.g. C) from the script
   
-  KEYWORD
-  
-**I should see some repositories coded in "javascript"**
+  KEYWORD: I should see some repositories coded in "javascript"
     
     ${range}=     Get Element Count   css: .repo-list-item
 
