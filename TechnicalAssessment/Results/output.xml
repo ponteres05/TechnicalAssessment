@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.10.0 on win32)" generated="20220421 18:36:38.532" rpa="false" schemaversion="2">
+<suite id="s1" name="GithubSearch" source="C:\Users\Lenovo\PycharmProjects\TechnicalAssessment\Test\GithubSearch.robot">
+<test id="s1-t1" name="Search for javascript projects">
+<kw name="Open Website" library="Common" type="SETUP">
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220421 18:36:38.901" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000226585F9660&gt;</msg>
+<status status="PASS" starttime="20220421 18:36:38.900" endtime="20220421 18:36:38.901"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${EXCLUDES}</var>
+<arg>enable-logging</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20220421 18:36:38.901" level="INFO">${EXCLUDES} = ['enable-logging']</msg>
+<status status="PASS" starttime="20220421 18:36:38.901" endtime="20220421 18:36:38.901"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_experimental_option</arg>
+<arg>excludeSwitches</arg>
+<arg>${EXCLUDES}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20220421 18:36:38.901" endtime="20220421 18:36:38.901"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${LOGIN_URL}</arg>
+<arg>chrome</arg>
+<arg>options=${chrome_options}</arg>
+<arg>executable_path=${CHROMEDRIVER_PATH}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220421 18:36:38.901" level="INFO">Opening browser 'chrome' to base url 'https://github.com/'.</msg>
+<status status="PASS" starttime="20220421 18:36:38.901" endtime="20220421 18:36:42.693"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220421 18:36:42.693" endtime="20220421 18:36:43.339"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>GitHub: Where the world builds software · GitHub</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220421 18:36:43.587" level="INFO">Page title is 'GitHub: Where the world builds software · GitHub'.</msg>
+<status status="PASS" starttime="20220421 18:36:43.339" endtime="20220421 18:36:43.587"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:38.899" endtime="20220421 18:36:43.587"/>
+</kw>
+<kw name="Given I want repositories coded in &quot;javascript&quot;" library="LandingPage">
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${SEARCH_INPUT}</arg>
+<arg>language:javascript</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20220421 18:36:43.590" level="INFO">${SEARCH_INPUT} = language:javascript</msg>
+<status status="PASS" starttime="20220421 18:36:43.589" endtime="20220421 18:36:43.590"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:43.589" endtime="20220421 18:36:43.590"/>
+</kw>
+<kw name="When I search Github" library="LandingPage">
+<arg>${SEARCH_INPUT}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${SEARCH_FIELD}</arg>
+<arg>${search_input}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220421 18:36:43.591" level="INFO">Typing text 'language:javascript' into text field 'name: q'.</msg>
+<status status="PASS" starttime="20220421 18:36:43.591" endtime="20220421 18:36:43.768"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>${SEARCH_FIELD}</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20220421 18:36:43.769" level="INFO">Sending key(s) ('ENTER',) to name: q element.</msg>
+<msg timestamp="20220421 18:36:44.100" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20220421 18:36:44.100" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20220421 18:36:43.769" endtime="20220421 18:36:45.417"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:43.591" endtime="20220421 18:36:45.417"/>
+</kw>
+<kw name="I should see some repositories coded in &quot;javascript&quot;" library="RepoResults">
+<kw name="Get Element Count" library="SeleniumLibrary">
+<var>${range}</var>
+<arg>css: .repo-list-item</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<msg timestamp="20220421 18:36:45.438" level="INFO">${range} = 10</msg>
+<status status="PASS" starttime="20220421 18:36:45.419" endtime="20220421 18:36:45.439"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${index}</var>
+<value>${range}</value>
+<iter>
+<var name="${index}">0</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.440" level="INFO">${index} = 0 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.439" endtime="20220421 18:36:45.440"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.443" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[0 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.441" endtime="20220421 18:36:45.472"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.440" endtime="20220421 18:36:45.472"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.439" endtime="20220421 18:36:45.472"/>
+</iter>
+<iter>
+<var name="${index}">1</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.473" level="INFO">${index} = 1 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.472" endtime="20220421 18:36:45.473"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.473" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[1 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.473" endtime="20220421 18:36:45.488"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.473" endtime="20220421 18:36:45.488"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.472" endtime="20220421 18:36:45.488"/>
+</iter>
+<iter>
+<var name="${index}">2</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.488" level="INFO">${index} = 2 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.488" endtime="20220421 18:36:45.488"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.488" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[2 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.488" endtime="20220421 18:36:45.519"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.488" endtime="20220421 18:36:45.519"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.488" endtime="20220421 18:36:45.519"/>
+</iter>
+<iter>
+<var name="${index}">3</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.520" level="INFO">${index} = 3 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.519" endtime="20220421 18:36:45.520"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.520" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[3 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.520" endtime="20220421 18:36:45.548"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.520" endtime="20220421 18:36:45.548"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.519" endtime="20220421 18:36:45.548"/>
+</iter>
+<iter>
+<var name="${index}">4</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.548" level="INFO">${index} = 4 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.548" endtime="20220421 18:36:45.548"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.549" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[4 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.549" endtime="20220421 18:36:45.581"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.548" endtime="20220421 18:36:45.581"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.548" endtime="20220421 18:36:45.581"/>
+</iter>
+<iter>
+<var name="${index}">5</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.582" level="INFO">${index} = 5 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.582" endtime="20220421 18:36:45.582"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.583" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[5 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.582" endtime="20220421 18:36:45.614"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.582" endtime="20220421 18:36:45.614"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.582" endtime="20220421 18:36:45.614"/>
+</iter>
+<iter>
+<var name="${index}">6</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.615" level="INFO">${index} = 6 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.614" endtime="20220421 18:36:45.615"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.615" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[6 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.615" endtime="20220421 18:36:45.646"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.615" endtime="20220421 18:36:45.646"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.614" endtime="20220421 18:36:45.646"/>
+</iter>
+<iter>
+<var name="${index}">7</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.646" level="INFO">${index} = 7 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.646" endtime="20220421 18:36:45.646"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.647" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[7 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.647" endtime="20220421 18:36:45.669"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.647" endtime="20220421 18:36:45.669"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.646" endtime="20220421 18:36:45.669"/>
+</iter>
+<iter>
+<var name="${index}">8</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.670" level="INFO">${index} = 8 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.669" endtime="20220421 18:36:45.670"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.670" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[8 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.670" endtime="20220421 18:36:45.692"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.670" endtime="20220421 18:36:45.692"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.669" endtime="20220421 18:36:45.692"/>
+</iter>
+<iter>
+<var name="${index}">9</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${index}</var>
+<arg>${index} + 1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220421 18:36:45.693" level="INFO">${index} = 9 + 1</msg>
+<status status="PASS" starttime="20220421 18:36:45.693" endtime="20220421 18:36:45.693"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Element Text Should Be</arg>
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[${index}]/div[2]/div[2]/div/div[2]/span/span[2]</arg>
+<arg>JavaScript</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220421 18:36:45.695" level="INFO">Verifying element 'xpath: //*[@id="js-pjax-container"]/div/div[3]/div/ul/li[9 + 1]/div[2]/div[2]/div/div[2]/span/span[2]' contains exact text 'JavaScript'.</msg>
+<status status="PASS" starttime="20220421 18:36:45.694" endtime="20220421 18:36:45.724"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.693" endtime="20220421 18:36:45.724"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.692" endtime="20220421 18:36:45.724"/>
+</iter>
+<status status="PASS" starttime="20220421 18:36:45.439" endtime="20220421 18:36:45.724"/>
+</for>
+<status status="PASS" starttime="20220421 18:36:45.419" endtime="20220421 18:36:45.724"/>
+</kw>
+<kw name="Close Website" library="Common" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220421 18:36:45.725" endtime="20220421 18:36:47.978"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:45.725" endtime="20220421 18:36:47.978"/>
+</kw>
+<status status="PASS" starttime="20220421 18:36:38.898" endtime="20220421 18:36:47.979"/>
+</test>
+<doc>To validate that repositories coded in "javascript" are displayed after search</doc>
+<status status="PASS" starttime="20220421 18:36:38.535" endtime="20220421 18:36:47.983"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="GithubSearch">GithubSearch</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
