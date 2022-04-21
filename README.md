@@ -21,6 +21,7 @@ robot -d ../Results API.robot
 
 3. 
   a. After running the tests, you can see the HTML logs and report in the Results folder (open to a browser). 
+  
   b. Also, the screenshot(s) in png format of the failures for the UI Automation can also be seen under the Results folder after test run if there are any failed test    case(s). To test this, we can intentionally fail the UI Automation test by changing the value in the assertion (i.e. expected language) scripted in the RepoResults.robot under PO folder:
   
   File: PO/RepoResults.robot
