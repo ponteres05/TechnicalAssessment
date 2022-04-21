@@ -29,7 +29,7 @@ robot -d ../Results API.robot
   
   File: PO/RepoResults.robot
   
-  *Change JavaScript to any language (e.g. C) from the script
+  *Change "JavaScript" to any language (e.g. C) from the script
   
   KEYWORD: I should see some repositories coded in "javascript"
     
