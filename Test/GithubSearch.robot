@@ -13,6 +13,6 @@ Resource            ../PO/RepoResults.robot
 Search for javascript projects
     Given I want repositories coded in "javascript"
     When I search Github    ${SEARCH_INPUT}
-    I should see some repositories coded in "javascript"
+    Then I should see some repositories coded in "javascript"
 
 
