@@ -2,17 +2,8 @@
 
 1. Note! Please change the ${CHROMEDRIVER_PATH} variable value scripted in the Config.robot file under Data folder to the path where your chromedriver.exe is located.
 
-_*** Settings ***
+![image](https://user-images.githubusercontent.com/56670979/164565504-4ffc9033-457d-4f45-8f9b-c7ab3e6bece3.png)
 
-Documentation       Test Configuration
-
-*** Variables ***
-
-${CHROMEDRIVER_PATH}        /dev/bin/chromedriver.exe   <---Change to/the/path/of/your/chromedriver
-
-${LOGIN_URL}                https://github.com/
-
-${BROWSER}                  Chrome_
 
 2. To execute the tests use the following command on the root of the project:
 
