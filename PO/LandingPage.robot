@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation       Landing Page Keywords Repository
 Library             SeleniumLibrary
-Resource            ../Data/Config.robot
 Resource            ../Data/InputData.robot
 
 *** Variables ***
