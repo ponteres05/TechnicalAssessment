@@ -11,7 +11,7 @@ ${SORT_BY}      stars
 ${SORT_ORDER}   desc
 
 
-#robot -d ../Results API.robot
+#robot -d ../Results Test/API.robot
 
 *** Test Cases ***
 
