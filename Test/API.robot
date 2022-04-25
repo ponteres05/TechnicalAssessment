@@ -60,9 +60,9 @@ Search Repositories in Github
         Run keyword And Continue On Failure     Should be equal as Strings     True   ${is_boolean}
     END
 
-    #open_issues
+    #url
     FOR     ${index}    IN RANGE       ${range}
-        ${get_open_issues_value}    Set Variable    ${get_response.json()}[items][${index}][open_issues]
-        ${is_int}=      Evaluate     isinstance($get_open_issues_value, int)
-        Run keyword And Continue On Failure     Should be equal as Strings     True   ${is_int}
+        ${get_url_value}    Set Variable    ${get_response.json()}[items][${index}][url]
+        ${is_string}=      Evaluate     isinstance($get_url_value, str)
+        Run keyword And Continue On Failure     Should be equal as Strings     True   ${is_string}
     END
