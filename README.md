@@ -9,13 +9,13 @@
 
 **(Part 1) UI Automation**
 
-robot -d ../Results Test/GithubSearch.robot
+robot -d ./Results Test/GithubSearch.robot
 
 
 
 **(Part 2) API Automation**
 
-robot -d ../Results Test/API.robot
+robot -d ./Results Test/API.robot
 
 
 3. 
