@@ -7,7 +7,7 @@ Resource            ../PO/Common.robot
 Resource            ../PO/LandingPage.robot
 Resource            ../PO/RepoResults.robot
 
-#robot -d ../Results Test/GithubSearch.robot
+#robot -d ./Results Test/GithubSearch.robot
 
 *** Test Cases ***
 Search for javascript projects
