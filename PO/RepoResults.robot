@@ -1,8 +1,6 @@
 *** Settings ***
 Documentation       Repository Results Page Keywords Repository
 Library             SeleniumLibrary
-Resource            ../Data/Config.robot
-Resource            ../Data/InputData.robot
 
 *** Keywords ***
 I should see some repositories coded in "javascript"
