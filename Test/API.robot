@@ -57,12 +57,12 @@ Search Repositories in Github
     FOR     ${index}    IN RANGE       ${range}
         ${get_fork_value}  Set Variable    ${get_response.json()}[items][${index}][fork]
         ${is_boolean}=      Evaluate     isinstance($get_fork_value, bool)
-    Run keyword And Continue On Failure     Should be equal as Strings     True   ${is_boolean}
+        Run keyword And Continue On Failure     Should be equal as Strings     True   ${is_boolean}
     END
 
     #open_issues
     FOR     ${index}    IN RANGE       ${range}
-    ${get_open_issues_value}    Set Variable    ${get_response.json()}[items][${index}][open_issues]
-    ${is_int}=      Evaluate     isinstance($get_open_issues_value, int)
-    Run keyword And Continue On Failure     Should be equal as Strings     True   ${is_int}
+        ${get_open_issues_value}    Set Variable    ${get_response.json()}[items][${index}][open_issues]
+        ${is_int}=      Evaluate     isinstance($get_open_issues_value, int)
+        Run keyword And Continue On Failure     Should be equal as Strings     True   ${is_int}
     END
