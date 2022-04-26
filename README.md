@@ -17,6 +17,11 @@ robot -d ./Results Test/GithubSearch.robot
 
 robot -d ./Results Test/API.robot
 
+OR
+
+**Execute All**
+robot -d ./Results Test/
+
 
 3. 
   a. After running the tests, you can see the HTML logs and report in the Results folder (open to a browser). 
